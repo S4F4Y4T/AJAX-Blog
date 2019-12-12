@@ -1,0 +1,240 @@
+@import '_color';
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    transition: all .3s;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: $primary-text;
+    background: $lighten;
+}
+
+ul{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+@import 'login';
+
+
+/*home desgin */
+
+.container{
+    width:1150px;
+    background:$lighten;
+    height:100vh; 
+    margin:0 auto;
+    height:auto;
+}
+
+
+.navbar{
+    height:120px;
+    background: $primary;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding:20px;
+    border-radius: 4px;
+    width:100%;
+}
+
+.logo{
+    justify-self: flex-start;
+    color:$lighten;
+    font-weight: bold;
+    font-size:2rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: end;
+}
+
+.nav li{
+    margin:5px;
+}
+
+.nav li a{
+    color:$lighten;
+    font-weight: bold;
+    font-size:1rem;
+    cursor:pointer;
+}
+
+.nav li:hover{
+    border-bottom: 3px solid #fff;
+}
+
+#post{
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+}
+#post-box{
+    width:80vw;
+    height:10vh;
+    margin:20px 0px;
+    padding:8px
+}
+
+.post-display{
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap:20px;
+}
+
+.post-body{
+    border-top:3px solid $primary;
+    box-shadow:1px 2px 2px $darken;
+    padding:20px;
+    margin:20px 0px;
+}
+
+.post-body:first-child{
+    margin:0px;
+}
+
+.post-body h3{
+    font-size:1.6rem;
+    margin-bottom: 5px;
+}
+
+.post-block{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.post-block img{
+    height:150px;
+    width:250px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.img-box{
+    height:150px;
+    width:250px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.post-block img:hover{
+    transform: scale(1.2);
+    transition: all .5s ease-in-out;
+}
+
+.post-block p{
+    padding:0px 15px;
+    font-size: 1.3rem;
+}
+
+.sidebar{
+    height:auto;
+    width:100%;
+    background: $primary;
+    margin-bottom:20px;
+}
+
+#delete{
+    float: right;
+    background: $primary;
+    padding: 5px;
+    color: $lighten;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+footer{
+    height:120px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color:$lighten;
+    font-size: 1.3rem;
+    background: $primary;
+    border-radius: 4px;
+}
+/*home desgin */
+
+input[type='submit']{
+    padding: 15px 50px;
+    border: none;
+    background: $primary;
+    border-radius: 5px;
+    margin: 18px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+#post{
+    display:flex;
+    flex-direction: column;
+}
+#title{
+    width: 100%;
+    padding: 15px 5px;
+    margin: 5px;
+}
+
+#post_body{
+    width:100%;
+    padding:15px 5px;
+    margin:5px;
+}
+
+#email{
+    margin: 30px 15px 0px 15px;
+    padding: 10px;
+    border: 1px solid #d62727;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* pagination */
+
+.pagination{
+    display:flex;
+    flex-direction: row;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.pagination li{
+    padding:8px;
+    cursor: pointer;
+    
+}
+
+.pagination li a{
+    color:$lighten;
+    background:$primary;
+    padding:8px 15px;
+    border-radius: 5px;
+}
+
+.pagination .active{
+    background:$lighten;
+    color:$primary;
+    border:1px solid $primary
+    
+}

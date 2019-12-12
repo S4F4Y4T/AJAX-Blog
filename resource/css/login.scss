@@ -1,0 +1,80 @@
+/* login css */
+.container-login{
+    min-height: 100vh;
+    width: 100vw;
+    background:url("../../images/login-bd.jpeg") no-repeat center/cover;
+    position: relative;;   
+}
+
+.overlay{
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background: rgba(0,0,0,0.7);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#login,#register{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(0,0,0,.7);
+    padding:80px 50px;
+    border-radius: 8px;
+    position: relative;
+    z-index:1;
+}
+
+.user{
+    height:80px;
+    width:80px;
+    background:rgba(0,0,0,.7);
+    position: absolute;
+    top:0;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    z-index:2;
+}
+
+#login input[type='text'], #login input[type='password'],
+#register input[type='text'], #register input[type='password']
+{
+    margin:10px;
+    overflow:hidden;
+    border:none;
+    border-bottom:3px solid $secondary-login;
+    background: transparent;
+    padding:15px 0px;
+    font-size:20px;
+    color:$lighten;
+}
+
+#login input[type='submit'],
+#register input[type='submit']{
+    border:none;
+    padding:8px 18px;
+    background: $secondary-login;
+    border-radius:5px;
+    color:$lighten;
+    font-size:18px;
+    cursor:pointer
+}
+
+#login p,#register p{
+    color:$lighten;
+    margin:5px 0px;
+}
+
+#login a,#register a{
+    color:$secondary-login;
+    font-weight: bold;
+}
+
+
+
+/* login css */
