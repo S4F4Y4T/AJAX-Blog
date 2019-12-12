@@ -108,15 +108,29 @@ class Post{
     public static function delPost($method,$id){
         if($_SERVER['REQUEST_METHOD'] == $method){
             if(Session::isloggedin()){
-                $data = array(
-                    'table'			 => array('table' => 'post'),
-                    'wherecond'  => array('where' =>array('id' => $id, 'user_id' => Session::isloggedin()))
+
+                $getImg = array(
+                    'table'		 => array('table' => 'post'),
+                    'selectcond' => array('select' => 'image'),
+                    'wherecond'  => array('where' => array('id' => $id, 'user_id' => Session::isloggedin()))
                 );
-                $delete = DB::delete($data);
-                if($delete){
-                    http_response_code(200);
-                    echo '{"message" : "Data Deleted Successfully"}';
+    
+                $delImg = DB::fetch($getImg)[0][0];
+
+                if(unlink(ROOT.'/images/'.$delImg)){
+
+                    $data = array(
+                        'table'			 => array('table' => 'post'),
+                        'wherecond'  => array('where' =>array('id' => $id, 'user_id' => Session::isloggedin()))
+                    );
+                    $delete = DB::delete($data);
+                    if($delete){
+                        http_response_code(200);
+                        echo '{"message" : "Data Deleted Successfully"}';
+                    }
+
                 }
+
             }else{
                 echo '{"message" : "User Not Logged in"}';
             }
