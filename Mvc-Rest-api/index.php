@@ -1,12 +1,14 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
   //server configuration
-  include_once'app/api/config/config.php';
-  include_once'app/lib/Main.php';
-  include_once'app/lib/Route.php';
+  include_once'app/config/config.php';
 
-  //api's file
+  define('ROOT', getcwd());
+
   spl_autoload_register(function($class){
-    include_once'app/api/lib/'.$class.'.php';
+    include_once 'system/lib/'.$class.'.php';
   });
 
   Main::construct();

@@ -4,7 +4,6 @@ class Index{
         Session::chklogin();
         Route::view('inc/header');
         Route::view('login');
-        Route::view('inc/footer');
     }
 
     public static function work(){

@@ -1,7 +1,7 @@
 <?php
 class Post{
-    public static function getPost($method,$page){
-        if($_SERVER['REQUEST_METHOD'] == $method){
+    public static function getPost($page){
+        if($_SERVER['REQUEST_METHOD'] == "GET"){
 
             //pagination
 
@@ -14,48 +14,53 @@ class Post{
 
             $row = DB::fetch($data)[0][0];
 
-            $last_page = ceil($row/$per_page);
-            if($page < 1){
-                $page = 1;
-            }
-            if($page > $last_page){
-                $page = $last_page;
-            }
-            $start = ($page-1) * $per_page;
+            if($row > 0){
+                $last_page = ceil($row/$per_page);
+                if($page < 1){
+                    $page = 1;
+                }
+                if($page > $last_page){
+                    $page = $last_page;
+                }
+                $start = ($page-1) * $per_page;
 
-            //pagination
+                //pagination
 
-            $data = array(
-                'table'			 => array('table' => 'post'),
-                'pkey'			 => array('pkey' => 'id'),
-                'selectcond' => array('select' => '*'),
-                'orderby'	   => array('order' => 'DESC'),
-                'limit' 	 	 => array('start' => $start, 'limit' => $per_page),
-            );
+                $data = array(
+                    'table'			 => array('table' => 'post'),
+                    'pkey'			 => array('pkey' => 'id'),
+                    'selectcond' => array('select' => '*'),
+                    'orderby'	   => array('order' => 'DESC'),
+                    'limit' 	 	 => array('start' => $start, 'limit' => $per_page),
+                );
 
-            $query = DB::fetch($data);
+                $query = DB::fetch($data);
 
-            $response = "[";
+                $response = "[";
                 foreach($query as $value){
                     $response .= "{";
-                        $response .= '"postid" : "'.$value['id'].'",';
-                        $response .= '"title" : "'.$value['title'].'",';
-                        $response .= '"body" : "'.$value['body'].'",';
-                        $response .= '"userid" : "'.$value['user_id'].'",';
-                        $response .= '"image" : "'.$value['image'].'",';
-                        $response .= '"date" : "'.$value['date'].'"';
+                    $response .= '"postid" : "'.$value['id'].'",';
+                    $response .= '"title" : "'.$value['title'].'",';
+                    $response .= '"body" : "'.$value['body'].'",';
+                    $response .= '"userid" : "'.$value['user_id'].'",';
+                    $response .= '"image" : "'.$value['image'].'",';
+                    $response .= '"date" : "'.$value['date'].'"';
                     $response .= "},";
-                    
+
                 }
                 $response  = substr($response, 0, strlen($response)-1);
-            echo $response .= "]";
+                echo $response .= "]";
+            }else{
+                echo $response = "[{}]";
+            }
+
         }else{
             http_response_code(405);
         }
     }
 
-    public static function home_pagination($method,$page){
-        if($_SERVER['REQUEST_METHOD'] == $method){
+    public static function home_pagination($page){
+        if($_SERVER['REQUEST_METHOD'] == "GET"){
             $data = array(
                 'table'			 => array('table' => 'post'),
                 'selectcond' => array('select' => 'COUNT(*)')
@@ -68,8 +73,8 @@ class Post{
         }
     }
 
-    public static function addPost($method){
-        if($_SERVER['REQUEST_METHOD'] == $method){
+    public static function addPost(){
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
 
             validation::post($_POST,'title')::xss()::length('Title',3,64)::isempty();
             validation::post($_POST,'body')::xss()::isempty();
@@ -81,7 +86,7 @@ class Post{
                 
                 $image = validation::$value['image']['tmp'];
                 $uniq = validation::$value['image']['uniq'];
-                
+
                 move_uploaded_file($image, ROOT.'/images/'.$uniq);
 
                 $table = "post";
@@ -105,8 +110,8 @@ class Post{
         }
     }
 
-    public static function delPost($method,$id){
-        if($_SERVER['REQUEST_METHOD'] == $method){
+    public static function delPost($id){
+        if($_SERVER['REQUEST_METHOD'] == "DELETE"){
             if(Session::isloggedin()){
 
                 $getImg = array(
@@ -117,18 +122,16 @@ class Post{
     
                 $delImg = DB::fetch($getImg)[0][0];
 
-                if(unlink(ROOT.'/images/'.$delImg)){
+                unlink(ROOT.'/images/'.$delImg);
 
-                    $data = array(
-                        'table'			 => array('table' => 'post'),
-                        'wherecond'  => array('where' =>array('id' => $id, 'user_id' => Session::isloggedin()))
-                    );
-                    $delete = DB::delete($data);
-                    if($delete){
-                        http_response_code(200);
-                        echo '{"message" : "Data Deleted Successfully"}';
-                    }
-
+                $data = array(
+                    'table'			 => array('table' => 'post'),
+                    'wherecond'  => array('where' =>array('id' => $id, 'user_id' => Session::isloggedin()))
+                );
+                $delete = DB::delete($data);
+                if($delete){
+                    http_response_code(200);
+                    echo '{"message" : "Data Deleted Successfully"}';
                 }
 
             }else{

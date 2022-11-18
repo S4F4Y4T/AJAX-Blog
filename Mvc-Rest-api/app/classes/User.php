@@ -1,8 +1,9 @@
 <?php
 class User{
 
-    public static function Auth($method){
-        if($_SERVER['REQUEST_METHOD'] == $method){
+    public static function Auth(){
+
+        if($_SERVER['REQUEST_METHOD'] === "POST"){
 
             validation::post($_POST,'username')::xss()::length('Username',3,32)::isempty();
             validation::post($_POST,'email')::xss()::length('Email',3,32)::isempty()::email();
@@ -67,8 +68,8 @@ class User{
         }
     }
 
-    public static function login($method){
-        if($_SERVER['REQUEST_METHOD'] == $method){
+    public static function login(){
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
 
             validation::post($_POST,'username')::xss()::length('Username',3,32)::isempty();
             validation::post($_POST,'password')::xss()::length('Password',3,64)::isempty()::password();
@@ -116,8 +117,9 @@ class User{
         }
     }
 
-    public static function profile($method){
-        if($_SERVER['REQUEST_METHOD'] == $method){
+    public static function profile(){
+        if($_SERVER['REQUEST_METHOD'] == "GET"){
+
             if(Session::isloggedin()){
                 $data = array(
                     'table'			 => array('table' => 'users'),
@@ -144,8 +146,8 @@ class User{
         }
     }
 
-    public static function updtPfl($method){
-        if($_SERVER['REQUEST_METHOD'] == $method){
+    public static function updtPfl(){
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
             if(Session::isloggedin()){
                 validation::post($_POST,'email')::xss()::length('Email',3,32)::email()::isempty();
 

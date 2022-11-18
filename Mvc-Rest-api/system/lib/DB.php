@@ -1,6 +1,5 @@
 <?php
-	include_once $_SERVER['DOCUMENT_ROOT']."/app/api/config/config.php";
-	include_once $_SERVER['DOCUMENT_ROOT']."/app/api/config/phpmailer/PHPMailerAutoload.php";
+//	include_once ROOT . "/app/config/phpmailer/PHPMailerAutoload.php";
 class DB{
 
 	public static function connect(){

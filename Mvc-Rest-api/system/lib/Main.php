@@ -2,9 +2,9 @@
 class Main{
 	public static $url;
 	public static $Controller = "Index";
-	public static $Path       = "classes/";
+	public static $Path       = "app/classes/";
 	public static $Method     = "construct";
-	public static $BASE		  = "https://localhost";
+	public static $BASE       = BASE;
 	public static $ctlr;
 	public static $param;
 
@@ -25,7 +25,11 @@ class Main{
 	public static function loadCtlr(){
 		if(!isset(self::$url[0])){
 			require self::$Path.self::$Controller.".php";
+				 	self::$ctlr = new self::$Controller();
 		}else{
+			if(!isset(self::$url[1])){
+				self::$url[0] = self::$Controller; 
+			}
 			self::$Controller = ucfirst(self::$url[0]);
 			$fileName = self::$Path.self::$Controller.".php";
 			if(file_exists($fileName)){
@@ -33,9 +37,13 @@ class Main{
 				if(class_exists(self::$Controller)){
 					self::$ctlr = self::$Controller;
 				}else{
+					var_dump("setp 5");
+					exit();
 					header("Location: ". self::$BASE );
 				}
 			}else{
+				var_dump($fileName);
+				exit();
 				header("Location: ". self::$BASE );
 			}
 		}
@@ -44,31 +52,30 @@ class Main{
 	public static function loadMethod(){
 		self::$Method = isset(self::$url[1]) ? self::$url[1] : self::$Method;
 
-		if(isset(self::$url[2])){
-			$type = strtoupper(self::$url[2]);
-		}
 
 		if(method_exists(self::$Controller, self::$Method)){
 
 			if(isset(self::$url[4])){
 
-				self::$ctlr::{self::$Method}($type,self::$url[3],self::$url[4]);
+				self::$ctlr::{self::$Method}(self::$url[2],self::$url[3],self::$url[4]);
 
 			}else if(isset(self::$url[3])){
 
-				self::$ctlr::{self::$Method}($type,self::$url[3]);
+				self::$ctlr::{self::$Method}(self::$url[2],self::$url[3]);
 
-			}else if(isset($type)){
+			}else if(isset(self::$url[2])){
 
-				self::$ctlr::{self::$Method}($type);
+				self::$ctlr::{self::$Method}(self::$url[2]);
 
 			}else{
 
-				self::$ctlr::{self::$Method}('GET');
+				self::$ctlr::{self::$Method}();
 
 			}
 
 		}else{
+			var_dump("setp 6");
+			exit();
 			header("Location: ". self::$BASE );
 		}
 	}

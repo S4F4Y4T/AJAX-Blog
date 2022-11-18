@@ -28,7 +28,7 @@ class validation{
 		$div 	   = explode('.',self::$value['name']);
 		self::$value[$key]['ext'] = strtolower(end($div));
 
-        self::$value[$key]['uniq']  = substr(md5(rand()),0 , 10).'.'.self::$value[$key]['ext'];
+        self::$value[$key]['uniq']  = substr(md5(rand()), 0, 10) . '.' .self::$value[$key]['ext'];
 
 		$permit = array('jpg','jpeg','png','gif');
 		if(in_array(self::$value[$key]['ext'],$permit) == false){
@@ -39,7 +39,7 @@ class validation{
 
 	public static function size(){
 		if(self::$value['size'] < 1024 || self::$value['size'] > 1048576){
-			self::$error = '<div class=alert alert-danger>Size must be between 1kb-1mb</div>';
+			self::$error = '<div class="alert alert-danger">Size must be between 1kb-1mb</div>';
 		}
 		return __CLASS__;
 	}

@@ -23,6 +23,4 @@
             </form>  
             </section>
 
-            <section class="sidebar">
-             </section>
         </div>
