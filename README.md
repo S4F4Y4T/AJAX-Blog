@@ -44,7 +44,7 @@ This platform build with php MVC Framework and api. Html,css and js for frontend
 
 * [![php][php]][php-url]
 * ![api][api]
-* ![api][api]
+* ![mysql][mysql]
 * [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
