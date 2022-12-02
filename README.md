@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <h3 align="center">PHP-MVC-API-Blog</h3>
+  <h3 align="center">Blog</h3>
   <p>Api Based Blog using MVC Framework</p>
 </div>
 
