@@ -34,7 +34,7 @@
 
 ![Screen Shot][product-screenshot-1]
 
-This is a blog based on api and my own php mvc framework. You can register or login,update profile and post blog with thumbnail with scrach pagination
+This is a blog based on api and my own php mvc framework. You can register or login,update profile and post blog with thumbnail with scratch pagination
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
