@@ -40,7 +40,7 @@ This is a blog based on api and my own php mvc framework. You can register or lo
 
 ### Built With
 
-This platform build with php MVC Framework and api. Html,css and js for frontend and api implementation
+This platform built with php MVC Framework and api. Html,css and js for frontend and api implementation
 
 * [![php][php]][php-url]
 * ![api][api]
