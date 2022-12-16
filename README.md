@@ -40,9 +40,10 @@ This is a blog based on api and my own php mvc framework. You can register or lo
 
 ### Built With
 
-This platform built with php MVC Framework and api. Html,css and js for frontend and api implementation
+This project built with my php MVC Framework and api and Html,css and js for frontend
 
 * [![php][php]][php-url]
+* ![mvc][mvc]
 * ![api][api]
 * ![mysql][mysql]
 * [![JQuery][JQuery.com]][JQuery-url]
@@ -103,6 +104,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [product-screenshot-4]: overview/4.png
 
 [api]: https://img.shields.io/badge/api-api-white
+[mvc]: https://img.shields.io/badge/mvc-mvc-white
 [mysql]: https://img.shields.io/badge/MYSQL-MYSQL-orange
 [php]: https://img.shields.io/badge/php-php-white
 [Php-url]: https://www.php.net/
