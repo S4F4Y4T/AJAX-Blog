@@ -2,7 +2,7 @@
 
 <div align="center">
   <h3 align="center">Blog</h3>
-  <p>Api Based Blog using MVC Framework</p>
+  <p>Ajax Based Blog using MVC Framework</p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
